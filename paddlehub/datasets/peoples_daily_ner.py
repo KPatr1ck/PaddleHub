@@ -23,8 +23,8 @@ from paddlehub.text.bert_tokenizer import BertTokenizer
 from paddlehub.text.tokenizer import CustomTokenizer
 
 
-@download_data(url="https://paddlenlp.bj.bcebos.com/datasets/msra_ner.tar.gz")
-class MSRA_NER(SeqLabelingDataset):
+@download_data(url="https://paddlenlp.bj.bcebos.com/datasets/peoples_daily_ner.tar.gz")
+class PeoplesDailyNER(SeqLabelingDataset):
     """
     A set of manually annotated Chinese word-segmentation data and
     specifications for training and testing a Chinese word-segmentation system
@@ -43,8 +43,10 @@ class MSRA_NER(SeqLabelingDataset):
 
         if mode == 'train':
             data_file = 'train.tsv'
-        else:  # only train.tsv and test.tsv are available
+        elif mode == 'test':
             data_file = 'test.tsv'
+        else:
+            data_file = 'dev.tsv'
         super().__init__(
             base_path=base_path,
             tokenizer=tokenizer,
